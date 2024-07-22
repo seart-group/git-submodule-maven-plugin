@@ -5,7 +5,7 @@
   <groupId>ch.usi.si.seart</groupId>
   <artifactId>git-submodule-maven-plugin</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>jar</packaging>
+  <packaging>maven-plugin</packaging>
 
   <name>${project.groupId}:${project.artifactId}</name>
   <description>Plugin used for updating Git submodules in Maven projects</description>
