@@ -3,19 +3,19 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>ch.usi.si.seart</groupId>
-  <artifactId>template-maven-plugin</artifactId>
+  <artifactId>git-submodule-maven-plugin</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>${project.groupId}:${project.artifactId}</name>
   <description/>
-  <url>https://github.com/seart-group/template-maven-plugin</url>
+  <url>https://github.com/seart-group/git-submodule-maven-plugin</url>
   <inceptionYear/>
 
   <licenses>
     <license>
       <name>MIT License</name>
-      <url>https://raw.githubusercontent.com/seart-group/template-maven-plugin/master/LICENSE</url>
+      <url>https://raw.githubusercontent.com/seart-group/git-submodule-maven-plugin/master/LICENSE</url>
     </license>
   </licenses>
 
@@ -37,14 +37,14 @@
 
   <scm>
     <tag>HEAD</tag>
-    <url>https://github.com/seart-group/template-maven-plugin/tree/master</url>
-    <connection>scm:git:https://github.com/seart-group/template-maven-plugin.git</connection>
-    <developerConnection>scm:git:git@github.com:seart-group/template-maven-plugin.git</developerConnection>
+    <url>https://github.com/seart-group/git-submodule-maven-plugin/tree/master</url>
+    <connection>scm:git:https://github.com/seart-group/git-submodule-maven-plugin.git</connection>
+    <developerConnection>scm:git:git@github.com:seart-group/git-submodule-maven-plugin.git</developerConnection>
   </scm>
 
   <issueManagement>
     <system>GitHub</system>
-    <url>https://github.com/seart-group/template-maven-plugin/issues</url>
+    <url>https://github.com/seart-group/git-submodule-maven-plugin/issues</url>
   </issueManagement>
 
   <distributionManagement>
