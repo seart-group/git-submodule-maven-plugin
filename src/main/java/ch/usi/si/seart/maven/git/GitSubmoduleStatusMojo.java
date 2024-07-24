@@ -1,4 +1,4 @@
-package ch.usi.si.seart.maven;
+package ch.usi.si.seart.maven.git;
 
 import org.apache.maven.plugins.annotations.Mojo;
 import org.eclipse.jgit.api.Git;

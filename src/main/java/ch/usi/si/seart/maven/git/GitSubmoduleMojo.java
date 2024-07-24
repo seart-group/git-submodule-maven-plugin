@@ -1,4 +1,4 @@
-package ch.usi.si.seart.maven;
+package ch.usi.si.seart.maven.git;
 
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
