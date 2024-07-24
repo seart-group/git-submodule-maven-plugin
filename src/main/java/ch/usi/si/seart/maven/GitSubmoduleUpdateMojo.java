@@ -14,10 +14,10 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * This plugin is used to update all {@code git} submodules in a Maven project. It is a must when building for release.
- * Typically, the {@code maven-release-plugin} will not initialise submodules when building the release in a sandbox.
- * With this plugin, the submodules will be updated at the beginning of the build process. As a result, one doesn't need
- * to resort to writing custom scripts to update submodules.
+ * This goal is used to initialise and update all {@code git} submodules in a Maven project. It is a must when building
+ * for release. Typically, the {@code maven-release-plugin} will not include submodules when cloning the repository in
+ * the sandbox environment during release builds. With this plugin, the submodules will be updated at the beginning of
+ * the build process. As a result, one doesn't need to resort to writing custom scripts to update submodules.
  *
  * @author Ozren Dabić
  */
