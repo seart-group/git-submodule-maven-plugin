@@ -26,20 +26,20 @@ public class GitSubmoduleStatusMojo extends GitSubmoduleMojo {
         for (SubmoduleStatus status : statuses.values()) {
             Path absolute = Paths.get(status.getPath()).toAbsolutePath();
             Path relative = root.relativize(absolute);
-            String sha = status.getHeadId().getName();
-            switch (status.getType()) {
-                case UNINITIALIZED:
-                    sha = "-" + sha;
-                    break;
-                case REV_CHECKED_OUT:
-                    sha = "+" + sha;
-                    break;
-                default:
-                    sha = " " + sha;
-                    break;
-            }
-            String message = String.format("%s %s", sha, relative);
+            String message = formatSHA(status) + " " + relative;
             getLog().info(message);
+        }
+    }
+
+    private static String formatSHA(SubmoduleStatus status) {
+        String sha = status.getHeadId().getName();
+        switch (status.getType()) {
+            case UNINITIALIZED:
+                return "-" + sha;
+            case REV_CHECKED_OUT:
+                return "+" + sha;
+            default:
+                return " " + sha;
         }
     }
 }
