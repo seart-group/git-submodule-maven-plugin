@@ -30,15 +30,17 @@ public class GitSubmoduleUpdateMojo extends GitSubmoduleMojo {
     }
 
     private void traverse(Repository root) throws GitAPIException, IOException {
-        SubmoduleWalk walk = SubmoduleWalk.forIndex(root);
-        while (walk.next()) {
-            Repository submodule = walk.getRepository();
-            String name = submodule.getDirectory().getName();
-            getLog().info("Entering '" + name + "'");
-            Git git = Git.wrap(submodule);
-            git.submoduleInit().call();
-            git.submoduleUpdate().call();
-            traverse(submodule);
+        try (SubmoduleWalk walk = SubmoduleWalk.forIndex(root)) {
+            while (walk.next()) {
+                try (Repository submodule = walk.getRepository()) {
+                    String name = submodule.getDirectory().getName();
+                    getLog().info("Entering '" + name + "'");
+                    Git git = Git.wrap(submodule);
+                    git.submoduleInit().call();
+                    git.submoduleUpdate().call();
+                    traverse(submodule);
+                }
+            }
         }
     }
 }
