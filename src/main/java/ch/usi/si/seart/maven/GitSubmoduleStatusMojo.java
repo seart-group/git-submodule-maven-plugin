@@ -9,6 +9,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Map;
 
+/**
+ * This goal is used to display the status of all {@code git} submodules in a Maven project.
+ *
+ * @author Ozren Dabić
+ */
 @Mojo(name = "status")
 public class GitSubmoduleStatusMojo extends GitSubmoduleMojo {
 
