@@ -7,7 +7,10 @@ import org.eclipse.jgit.submodule.SubmoduleStatus;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * This goal is used to display the status of all {@code git} submodules in a Maven project.
@@ -22,8 +25,11 @@ public class GitSubmoduleStatusMojo extends GitSubmoduleMojo {
     protected void execute(Git git) throws Exception {
         Repository repository = git.getRepository();
         Path root = repository.getWorkTree().toPath().toAbsolutePath();
-        Map<String, SubmoduleStatus> statuses = git.submoduleStatus().call();
-        for (SubmoduleStatus status : statuses.values()) {
+        Map<String, SubmoduleStatus> map = git.submoduleStatus().call();
+        List<SubmoduleStatus> statuses = map.values().stream()
+                .sorted(Comparator.comparing(SubmoduleStatus::getPath))
+                .collect(Collectors.toList());
+        for (SubmoduleStatus status : statuses) {
             Path absolute = Paths.get(status.getPath()).toAbsolutePath();
             Path relative = root.relativize(absolute);
             String message = formatSHA(status) + " " + relative;
