@@ -22,7 +22,7 @@ import java.io.IOException;
  * @author Ozren Dabić
  */
 @Mojo(name = "update", defaultPhase = LifecyclePhase.INITIALIZE)
-public class UpdateGitSubmodulesMojo extends AbstractMojo {
+public class GitSubmoduleUpdateMojo extends AbstractMojo {
 
     /**
      * When set to {@code true} the plugin execution will completely skip. This is useful for profile-activated plugin
