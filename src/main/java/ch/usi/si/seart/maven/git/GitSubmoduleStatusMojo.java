@@ -34,8 +34,11 @@ public class GitSubmoduleStatusMojo extends GitSubmoduleMojo {
                 case REV_CHECKED_OUT:
                     sha = "+" + sha;
                     break;
+                default:
+                    sha = " " + sha;
+                    break;
             }
-            String message = String.format("%s\t%s", sha, relative);
+            String message = String.format("%s %s", sha, relative);
             getLog().info(message);
         }
     }
