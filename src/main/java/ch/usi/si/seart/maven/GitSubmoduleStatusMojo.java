@@ -15,10 +15,10 @@ public class GitSubmoduleStatusMojo extends GitSubmoduleMojo {
     @Override
     protected void execute(Git git) throws Exception {
         Repository repository = git.getRepository();
-        Path root = repository.getWorkTree().toPath();
+        Path root = repository.getWorkTree().toPath().toAbsolutePath();
         Map<String, SubmoduleStatus> statuses = git.submoduleStatus().call();
         for (SubmoduleStatus status : statuses.values()) {
-            Path absolute = Paths.get(status.getPath());
+            Path absolute = Paths.get(status.getPath()).toAbsolutePath();
             Path relative = root.relativize(absolute);
             String sha = status.getHeadId().getName();
             String message = String.format("%s\t%s", sha, relative);
