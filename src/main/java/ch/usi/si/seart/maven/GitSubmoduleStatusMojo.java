@@ -27,6 +27,14 @@ public class GitSubmoduleStatusMojo extends GitSubmoduleMojo {
             Path absolute = Paths.get(status.getPath()).toAbsolutePath();
             Path relative = root.relativize(absolute);
             String sha = status.getHeadId().getName();
+            switch (status.getType()) {
+                case UNINITIALIZED:
+                    sha = "-" + sha;
+                    break;
+                case REV_CHECKED_OUT:
+                    sha = "+" + sha;
+                    break;
+            }
             String message = String.format("%s\t%s", sha, relative);
             getLog().info(message);
         }
