@@ -63,4 +63,4 @@ overall user experience.
 
 ### How do I contribute to the project?
 
-Refer to [CONTRIBUTING.md](CONTRIBUTING.md) for more information.
+Refer to [CONTRIBUTING.md](/CONTRIBUTING.md) for more information.
