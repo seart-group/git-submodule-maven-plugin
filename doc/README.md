@@ -34,6 +34,31 @@ Add the following to the `plugins` section of your `pom.xml`:
   <groupId>${groupId}</groupId>
   <artifactId>${artifactId}</artifactId>
   <version>${project.version}</version>
+  <!-- configurations and executions go here -->  
+</plugin>
+```
+
+## Goals
+
+### `status`
+
+Equivalent to running `git submodule status`. This goal is intended primarily for debugging purposes. You can execute it
+directly from the command line:
+
+```shell
+mvn ch.usi.si.seart:git-submodule-maven-plugin:status
+```
+
+### `update`
+
+Equivalent to running `git submodule update --init --recursive`. Recursively initialises and updates all submodules in
+the project. To use this goal in your build, write your plugin definition as follows:
+
+```xml
+<plugin>
+  <groupId>${groupId}</groupId>
+  <artifactId>${artifactId}</artifactId>
+  <version>${project.version}</version>
   <executions>
     <execution>
       <goals>
@@ -44,7 +69,16 @@ Add the following to the `plugins` section of your `pom.xml`:
 </plugin>
 ```
 
-The default execution phase of this goal is `initialize`, but you can change it according to your needs.
+The default execution `phase` of this goal is `initialize`, but you can change it according to your needs.
+
+## Configuration
+
+At the moment, the plugin supports the following configuration options:
+
+| Configuration     | Default Value             | Description                                      |
+|-------------------|---------------------------|--------------------------------------------------|
+| `skip`            | `false`                   | Skips the execution of the plugin.               |
+| `dotGitDirectory` | `${project.basedir}/.git` | The path to the `.git` directory in the project. |
 
 ## FAQ
 
