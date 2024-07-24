@@ -58,5 +58,12 @@ abstract class GitSubmoduleMojo extends AbstractMojo {
         }
     }
 
+    /**
+     * Perform the actual work of a plugin goal. Implementors overriding this method shouldn't concern themselves with
+     * closing the {@link Git} instance, as this is automatically performed once this method returns.
+     *
+     * @param git the {@code git} repository to work with.
+     * @throws Exception if an error occurs during execution.
+     */
     protected abstract void execute(Git git) throws Exception;
 }
