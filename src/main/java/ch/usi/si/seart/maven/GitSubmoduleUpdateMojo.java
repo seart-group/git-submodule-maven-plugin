@@ -15,6 +15,7 @@ import java.io.IOException;
  * the sandbox environment during release builds. With this plugin, the submodules will be updated at the beginning of
  * the build process. As a result, one doesn't need to resort to writing custom scripts to update submodules.
  *
+ * @see <a href="https://git-scm.com/docs/git-submodule">Git Command Documentation</a>
  * @author Ozren Dabić
  */
 @Mojo(name = "update", defaultPhase = LifecyclePhase.INITIALIZE)

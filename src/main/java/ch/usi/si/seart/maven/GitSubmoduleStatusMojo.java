@@ -12,6 +12,7 @@ import java.util.Map;
 /**
  * This goal is used to display the status of all {@code git} submodules in a Maven project.
  *
+ * @see <a href="https://git-scm.com/docs/git-submodule">Git Command Documentation</a>
  * @author Ozren Dabić
  */
 @Mojo(name = "status")
