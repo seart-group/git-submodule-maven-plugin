@@ -3,6 +3,7 @@ package ch.usi.si.seart.maven.plugin.git;
 import org.apache.maven.plugin.logging.Log;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
+import org.eclipse.jgit.lib.ObjectId;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.submodule.SubmoduleStatus;
 import org.eclipse.jgit.submodule.SubmoduleWalk;
@@ -34,9 +35,20 @@ final class RecursiveSubmoduleStatusReporter {
                 .collect(Collectors.toList());
         for (SubmoduleStatus status : statuses) {
             String path = status.getPath();
-            log.info(formatSHA(status) + " " + Paths.get(prefix, path));
+            ObjectId head = status.getHeadId();
             try (Repository submodule = SubmoduleWalk.getSubmoduleRepository(repository, path)) {
-                status(path, Git.wrap(submodule));
+                Git wrapped = Git.wrap(submodule);
+                String result = wrapped.describe()
+                        .setTarget(head)
+                        .setTags(true)
+                        .call();
+                String branch = repository.getBranch();
+                boolean detached = ObjectId.isId(branch);
+                String reference = detached ? head.abbreviate(7).name() : "heads/" + branch;
+                String description = result != null ? result : reference;
+                String message = String.format("%s %s (%s)", formatSHA(status), Paths.get(prefix, path), description);
+                log.info(message);
+                status(path, wrapped);
             }
         }
     }
