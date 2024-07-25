@@ -1,4 +1,4 @@
-package ch.usi.si.seart.maven.git;
+package ch.usi.si.seart.maven.plugin.git;
 
 import org.apache.maven.plugin.logging.Log;
 import org.eclipse.jgit.api.Git;
