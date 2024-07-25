@@ -46,7 +46,7 @@ Equivalent to running `git submodule status`. This goal is intended primarily fo
 directly from the command line:
 
 ```shell
-mvn ch.usi.si.seart:git-submodule-maven-plugin:status
+mvn ${name}:status
 ```
 
 ### `update`
