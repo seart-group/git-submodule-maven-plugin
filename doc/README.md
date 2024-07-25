@@ -42,8 +42,9 @@ Add the following to the `plugins` section of your `pom.xml`:
 
 ### `status`
 
-Equivalent to running `git submodule status`. This goal is intended primarily for debugging purposes. You can execute it
-directly from the command line:
+Equivalent to running `git submodule status --recursive`. Given that this goal only lists the status of the submodules
+in the project, its primary use is for debugging. It is not bound to any lifecycle phase by default. That being said,
+you can execute it directly from the command line:
 
 ```shell
 mvn ${name}:status
