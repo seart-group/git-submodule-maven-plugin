@@ -1,5 +1,7 @@
 package ch.usi.si.seart.maven.plugin.git;
 
+import ch.usi.si.seart.maven.plugin.logging.SilentLog;
+import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.eclipse.jgit.api.Git;
@@ -18,6 +20,7 @@ public class GitSubmoduleUpdateMojo extends GitSubmoduleMojo {
 
     @Override
     public void execute(Git git) throws Exception {
-        new RecursiveSubmoduleUpdater(git, getLog()).update();
+        Log log = isVerbose() ? getLog() : new SilentLog();
+        new RecursiveSubmoduleUpdater(git, log).update();
     }
 }

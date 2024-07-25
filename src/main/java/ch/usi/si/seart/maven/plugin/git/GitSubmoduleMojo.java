@@ -1,8 +1,8 @@
 package ch.usi.si.seart.maven.plugin.git;
 
-import ch.usi.si.seart.maven.plugin.logging.SilentLog;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
+import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.eclipse.jgit.api.Git;
 
@@ -52,18 +52,28 @@ abstract class GitSubmoduleMojo extends AbstractMojo {
     @Parameter(defaultValue = "${project.basedir}/.git")
     File dotGitDirectory;
 
+    /**
+     * @return {@code true} if the goal is executed in verbose mode, {@code false} otherwise.
+     */
+    public boolean isVerbose() {
+        return verbose;
+    }
+
     @Override
     public final void execute() throws MojoExecutionException {
-        if (!verbose) setLog(new SilentLog());
+        Log log = getLog();
 
         if (skip) {
-            getLog().info("Skipping execution of plugin.");
+            if (verbose) log.info("Skipping execution of plugin.");
             return;
         }
 
         if (!dotGitDirectory.exists()) {
-            String parent = dotGitDirectory.getParent();
-            getLog().info("No .git directory found at: " + parent + ". Skipping execution of plugin.");
+            if (verbose) log.info(
+                    "No .git directory found at: " +
+                    dotGitDirectory.getParent() +
+                    ". Skipping execution of plugin."
+            );
             return;
         }
 
