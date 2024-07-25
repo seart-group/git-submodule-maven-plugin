@@ -1,5 +1,6 @@
 package ch.usi.si.seart.maven.plugin.git;
 
+import org.apache.maven.plugin.logging.SystemStreamLog;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.lib.Repository;
@@ -23,6 +24,7 @@ public class GitSubmoduleStatusMojo extends GitSubmoduleMojo {
 
     @Override
     protected void execute(Git git) throws Exception {
+        setLog(new SystemStreamLog()); // reset logger during execution
         Repository repository = git.getRepository();
         Path root = repository.getWorkTree().toPath().toAbsolutePath();
         Map<String, SubmoduleStatus> map = git.submoduleStatus().call();

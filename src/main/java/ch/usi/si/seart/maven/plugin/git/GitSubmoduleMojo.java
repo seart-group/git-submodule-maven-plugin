@@ -1,5 +1,6 @@
 package ch.usi.si.seart.maven.plugin.git;
 
+import ch.usi.si.seart.maven.plugin.logging.SilentLog;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.Parameter;
@@ -24,6 +25,19 @@ abstract class GitSubmoduleMojo extends AbstractMojo {
     boolean skip;
 
     /**
+     * When set to {@code true} the plugin will produce execution output. By default, the output is <strong>not</strong>
+     * verbose. Note that some goals (such as {@link GitSubmoduleStatusMojo status}) may override this setting, since
+     * execution without any output is pointless.
+     * <p>
+     * Example:
+     * <pre>{@code
+     * <verbose>false</verbose>
+     * }</pre>
+     */
+    @Parameter(defaultValue = "false")
+    boolean verbose;
+
+    /**
      * Configuration used to indicate to the plugin about the root directory of the {@code git} repository we want to
      * check. By default, uses {@code ${project.basedir}/.git}. Should work for most single-module projects. For Maven
      * modules, use `../` to get higher up in the directory tree (for example {@code ${project.basedir}/../.git}).
@@ -40,6 +54,8 @@ abstract class GitSubmoduleMojo extends AbstractMojo {
 
     @Override
     public final void execute() throws MojoExecutionException {
+        if (!verbose) setLog(new SilentLog());
+
         if (skip) {
             getLog().info("Skipping execution of plugin.");
             return;

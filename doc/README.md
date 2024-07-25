@@ -78,6 +78,7 @@ At the moment, the plugin supports the following configuration options:
 | Configuration     | Default Value             | Description                                      |
 |-------------------|---------------------------|--------------------------------------------------|
 | `skip`            | `false`                   | Skips the execution of the plugin.               |
+| `verbose`         | `false`                   | Print additional execution information.          |
 | `dotGitDirectory` | `${project.basedir}/.git` | The path to the `.git` directory in the project. |
 
 ## FAQ
