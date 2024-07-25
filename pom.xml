@@ -286,6 +286,7 @@
                 <configuration>
                   <encoding>${project.build.sourceEncoding}</encoding>
                   <outputDirectory>${project.basedir}</outputDirectory>
+                  <escapeString>\</escapeString>
                   <resources>
                     <resource>
                       <directory>doc</directory>
