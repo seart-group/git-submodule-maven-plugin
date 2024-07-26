@@ -38,7 +38,8 @@ final class RecursiveSubmoduleStatusReporter {
         for (SubmoduleStatus status : statuses) {
             String path = status.getPath();
             ObjectId head = status.getHeadId();
-            String sha = head.getName();
+            ObjectId index = status.getIndexId();
+            String sha = head != null ? head.getName() : index.getName();
             SubmoduleStatusType type = status.getType();
             try (Repository submodule = SubmoduleWalk.getSubmoduleRepository(repository, path)) {
                 Path relative = Paths.get(parent, path);
