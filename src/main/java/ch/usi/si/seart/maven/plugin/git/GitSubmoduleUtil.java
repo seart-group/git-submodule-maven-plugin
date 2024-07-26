@@ -39,6 +39,7 @@ final class GitSubmoduleUtil {
     }
 
     static boolean hasConflicts(Repository repository) throws GitAPIException {
+        if (repository == null) return false;
         return !Git.wrap(repository)
                 .status()
                 .call()
