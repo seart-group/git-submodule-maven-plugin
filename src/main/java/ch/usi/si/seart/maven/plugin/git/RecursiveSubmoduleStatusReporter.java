@@ -9,6 +9,7 @@ import org.eclipse.jgit.submodule.SubmoduleStatus;
 import org.eclipse.jgit.submodule.SubmoduleWalk;
 
 import java.io.IOException;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Comparator;
 import java.util.List;
@@ -37,18 +38,11 @@ final class RecursiveSubmoduleStatusReporter {
             String path = status.getPath();
             ObjectId head = status.getHeadId();
             try (Repository submodule = SubmoduleWalk.getSubmoduleRepository(repository, path)) {
-                Git wrapped = Git.wrap(submodule);
-                String result = wrapped.describe()
-                        .setTarget(head)
-                        .setTags(true)
-                        .call();
-                String branch = repository.getBranch();
-                boolean detached = ObjectId.isId(branch);
-                String reference = detached ? head.abbreviate(7).name() : "heads/" + branch;
-                String description = result != null ? result : reference;
-                String message = String.format("%s %s (%s)", formatSHA(status), Paths.get(prefix, path), description);
+                Path relative = Paths.get(prefix, path);
+                String description = GitSubmoduleUtil.describe(submodule, head);
+                String message = String.format("%s %s (%s)", formatSHA(status), relative, description);
                 log.info(message);
-                status(path, wrapped);
+                status(path, Git.wrap(submodule));
             }
         }
     }
