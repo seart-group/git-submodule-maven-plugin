@@ -43,9 +43,9 @@ final class RecursiveSubmoduleStatusReporter {
             try (Repository submodule = SubmoduleWalk.getSubmoduleRepository(repository, path)) {
                 Path relative = Paths.get(parent, path);
                 boolean uninitialized = type == SubmoduleStatusType.UNINITIALIZED;
-                String description = GitSubmoduleUtil.describe(submodule, head);
+                String description = !uninitialized ? " (" + GitSubmoduleUtil.describe(submodule, head) + ")" : "";
                 char prefix = GitSubmoduleUtil.hasConflicts(submodule) ? 'U' : GitSubmoduleUtil.getPrefix(type);
-                String message = String.format("%c%s %s (%s)", prefix, sha, relative, description);
+                String message = String.format("%c%s %s%s", prefix, sha, relative, description);
                 log.info(message);
                 if (!uninitialized) status(path, Git.wrap(submodule));
             }
