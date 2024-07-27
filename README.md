@@ -17,7 +17,7 @@ Maven-like, drop-in solution to the described problem.
 
 ## Requirements
 
-* Java 1.8.0_422 or later
+* Java 8 or later
 * Maven 3.6.3 or later
 
 > [!NOTE]
