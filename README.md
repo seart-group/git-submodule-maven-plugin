@@ -33,7 +33,7 @@ Add the following to the `plugins` section of your `pom.xml`:
 <plugin>
   <groupId>ch.usi.si.seart</groupId>
   <artifactId>git-submodule-maven-plugin</artifactId>
-  <version>1.1.0</version>
+  <version>1.1.1</version>
   <!-- configurations and executions go here -->  
 </plugin>
 ```
@@ -59,7 +59,7 @@ the project. To use this goal in your build, write your plugin definition as fol
 <plugin>
   <groupId>ch.usi.si.seart</groupId>
   <artifactId>git-submodule-maven-plugin</artifactId>
-  <version>1.1.0</version>
+  <version>1.1.1</version>
   <executions>
     <execution>
       <goals>
