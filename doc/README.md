@@ -7,13 +7,13 @@ This plugin is used to initialise `git` submodules in Maven projects. An absolut
 When working with Maven projects that have `git` submodules, it is often necessary to clone the submodules before
 building. This is especially true when performing releases, as the submodules aren't initialised by the
 `maven-release-plugin` when building in a sandbox. This is a problem we've faced regularly in the past, most notably
-with our [java-tree-sitter](https://github.com/seart-group/java-tree-sitter) project, and more recently with
-[jcloc](https://github.com/seart-group/jcloc). The only [solution](https://stackoverflow.com/q/6938142/17173324)
-proposed by the community involved the use of the `exec-maven-plugin` to run a recursive initialisation and update of
-submodules within a project. Although viable, frequently copying and pasting the same configuration across projects
-tends to get annoying after the first few times. This is without mentioning the technical debt that would be incurred by
-having to maintain the same configuration in multiple projects. This project was born out a necessity to provide a more
-Maven-like, drop-in solution to the described problem.
+with our [java-tree-sitter](https://github.com/seart-group/java-tree-sitter) project. The only
+[solution](https://stackoverflow.com/q/6938142/17173324) proposed by the community involved the use of the
+`exec-maven-plugin` to run a recursive initialisation and update of submodules within a project. Although viable,
+frequently copying and pasting the same configuration across projects tends to get annoying after the first few times.
+This is without mentioning the technical debt that would be incurred by having to maintain the same configuration in
+multiple projects. This project was born out a necessity to provide a more Maven-like, drop-in solution to the described
+problem.
 
 ## Requirements
 
@@ -23,7 +23,7 @@ Maven-like, drop-in solution to the described problem.
 > [!NOTE]
 > Although it operates on Git submodules, this plugin doesn't require `git` to be installed on the system. Instead, it
 > uses the Eclipse [JGit](https://www.eclipse.org/jgit/) library to interact with the VCS through Java. As a result, the
-> plugin will still work in containerised environments such as Docker containers and CI/CD pipelines.
+> plugin will still work in environments such as Docker containers and CI/CD pipelines.
 
 ## Usage
 
