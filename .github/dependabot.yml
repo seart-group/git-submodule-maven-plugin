@@ -5,5 +5,3 @@ updates:
     schedule:
       interval: weekly
     target-branch: master
-    ignore:
-      - dependency-name: org.apache.maven:*
