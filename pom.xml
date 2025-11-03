@@ -65,7 +65,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>8</java.version>
     <org.apache.maven.version>3.9.11</org.apache.maven.version>
-    <org.apache.maven.plugin-testing.version>3.3.0</org.apache.maven.plugin-testing.version>
+    <org.apache.maven.plugin-testing.version>3.4.0</org.apache.maven.plugin-testing.version>
     <org.apache.maven.plugin-tools.version>3.15.2</org.apache.maven.plugin-tools.version>
     <org.apache.sshd.version>2.16.0</org.apache.sshd.version>
     <org.eclipse.jgit.version>5.13.5.202508271544-r</org.eclipse.jgit.version>
